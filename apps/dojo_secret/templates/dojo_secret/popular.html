@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dojo Secrets</title>
+  </head>
+  <body>
+    <h1>Hello, {{request.session.user.first_name}}</h1>
+    <a href="{% url 'login:logout' %}">logout</a>
+    <h2>Most Popular Secrets</h2>
+    {% for post in posts %}
+    <p>{{post.secrets}} Created {{ post.created_at|timesince}} ago. Number of likes: {{post.numLikes}}{% if not post.writer.id == request.session.user.id %} <a href="{% url 'secret:like' post.id %}">Like</a>{% else %} <a href="{% url 'secret:delete' post.id %}">Delete</a>{% endif %}</p>
+    {% endfor %}
+    <a href="{% url 'secret:home'%}">Go back</a>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dojo Secrets</title>
+  </head>
+  <body>
+    <h1>Hello, {{request.session.user.first_name}}</h1>
+    <a href="{% url 'login:logout' %}">logout</a>
+    <form class="" action="{% url 'secret:post' %}" method="post">
+      {% csrf_token%}
+      <input type="hidden" name="user_id" value="{{request.session.user.id}}">
+      <textarea name="secret" rows="8" cols="80"></textarea>
+      <input type="submit" name="submit" value="Post">
+    </form>
+    <a href="{% url 'secret:popular'%}">Go back</a>
+    <h2>Recent Secrets</h2>
+    {% for post in posts %}
+    <p>{{post.secrets}} Created {{ post.created_at|timesince}} ago. Number of likes: {{post.numLikes}}{% if not post.writer.id == request.session.user.id %} <a href="{% url 'secret:like' post.id %}">Like</a>{% else %} <a href="{% url 'secret:delete' post.id %}">Delete</a>{% endif %}</p>
+    {% if request.session.user.id in post.likes %} True {% endif %}
+    {% endfor %}
+  </body>
+</html>
