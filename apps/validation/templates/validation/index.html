@@ -12,8 +12,8 @@
         <label for="frst_name">First Name: </label><input type="text" name="first_name" value="">
         <label for="last_name">Last Name: </label><input type="text" name="last_name" value="">
         <label for="email">E-mail: </label><input type="text" name="email" value="">
-        <label for="pw">Password: </label><input type="password" name="pw" value="123456789">
-        <label for="pwConf">Confirm Password: </label><input type="password" name="pwConf" value="123456789">
+        <label for="pw">Password: </label><input type="password" name="pw" value="">
+        <label for="pwConf">Confirm Password: </label><input type="password" name="pwConf" value="">
         <input type="submit" name="register" value="Register">
       </form>
     </div>
@@ -22,7 +22,7 @@
       <form class="" action="{% url 'login:validate' 'login' %}" method="post">
         {% csrf_token %}
         <label for="email">E-mail: </label><input type="text" name="email" value="">
-        <label for="pw">Password: </label><input type="password" name="pw" value="123456789">
+        <label for="pw">Password: </label><input type="password" name="pw" value="">
         <input type="submit" name="validate" value="Login">
       </form>
     </div>
